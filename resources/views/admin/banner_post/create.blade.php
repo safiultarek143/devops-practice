@@ -40,7 +40,7 @@
                                 <img src="" id="post-img-tag" width="200px" />
                             </div>
                             <div class="form-group">
-                                <label for="description">Status</label>
+                                <label for="description">Status1</label>
                                 <select name="status" id="" class="form-control">
                                     <option value="">Choose status</option>
                                             <option selected value="1">Published</option>
