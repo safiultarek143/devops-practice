@@ -35,7 +35,7 @@
                             >
                            
                             <div class="form-group">
-                                <label>Banner Image</label>
+                                <label>Banner Image test</label>
                                 <input type="file" name="post_image" id="post-image" class="form-control" accept="image/*" required><br>
                                 <img src="" id="post-img-tag" width="200px" />
                             </div>
