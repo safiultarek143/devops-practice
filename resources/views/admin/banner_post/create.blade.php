@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label for="description">Status1</label>
                                 <select name="status" id="" class="form-control">
-                                    <option value="">Choose status1</option>
+                                    <option value="">Choose status133</option>
                                             <option selected value="1">Published</option>
                                             <option value="0">Unpublished</option>
                                 </select>
