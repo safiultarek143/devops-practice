@@ -1,0 +1,72 @@
+@extends('layouts.master')
+@push('run_custom_css')
+    <link rel="stylesheet" href="{{ asset('admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+@endpush
+@section('content')
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>All Story</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <div class="card">
+        <div class="card-header">
+            <a href="{{ route('story.create') }}" class="btn btn-info fa-pull-right"><i class="fa fa-plus"></i> Add new</a>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="data-table" class="table table-bordered table-hover dataTables_wrapper dt-bootstrap4">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(!empty($stories))
+                    @foreach($stories as $key => $story)
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $story->story_title }}</td>
+                            <td>{{ $story->story_category->category_name?? '' }}</td>
+                            <td>
+                                <img src="{{ asset($story->image) }}" alt="No image" width="40px">
+                            </td>
+                            <td>{{ $story->status== 1? 'Published': 'Unpublished' }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-info" href="{{ route('story.edit',$story->id) }}"><i class="fa fa-edit"></i> Edit</a>
+                                <a class="btn btn-sm btn-info" href="{{ route('story.show',$story->id) }}"><i class="fa fa-edit"></i> Show</a>
+                                @include('includes.master._confirm_delete',[
+                                    'id' => $story->id,
+                                    'url' => route('story.destroy',$story->id),
+                                    'message' => 'Are you sure want to delete this Story?',
+                                ])
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+@endsection
+@push('run_custom_jquery')
+    <script src="{{asset('admin-lte/plugins/datatables/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+    <script>
+        $(function () {
+            $("#data-table").DataTable({
+                aaSorting: []
+            });
+        });
+    </script>
+@endpush
+
